@@ -105,35 +105,42 @@ namespace GigaJira.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
 
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+          //  ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            
+            _logger.LogInformation("Return URL: {ReturnUrl}", returnUrl);
+
 
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    _logger.LogInformation("Return URL: {ReturnUrl}", returnUrl);
+
                     return LocalRedirect(returnUrl);
                 }
-                if (result.RequiresTwoFactor)
+                else if (result.IsLockedOut)
                 {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
+                    _logger.LogWarning("User account is locked out.");
                     return RedirectToPage("./Lockout");
+                }
+                else if (result.IsNotAllowed)
+                {
+                    _logger.LogWarning("Login is not allowed. Check confirmation settings.");
+                    ModelState.AddModelError(string.Empty, "Login not allowed.");
                 }
                 else
                 {
+                    _logger.LogWarning("Invalid login attempt.");
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return Page();
                 }
             }
 
             // If we got this far, something failed, redisplay form
+            _logger.LogInformation("ha.");
             return Page();
         }
     }

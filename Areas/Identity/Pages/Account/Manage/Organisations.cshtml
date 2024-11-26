@@ -1,0 +1,29 @@
+@page
+@model GigaJira.Areas.Identity.Pages.Account.Manage.OrganisationsModel
+@{
+    ViewData["Title"] = "Manage Organisations";
+}
+
+<h4>Manage Organisations</h4>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Organisation Name</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var organisation in Model.Organisations)
+    {
+        <tr>
+            <td>@organisation.OrganisationName</td>
+            <td>
+                <form method="post" asp-page-handler="Leave" asp-route-id="@organisation.Id">
+                    <button type="submit" class="btn btn-danger">Leave</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
