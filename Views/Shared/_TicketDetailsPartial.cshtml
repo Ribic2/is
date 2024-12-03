@@ -1,0 +1,90 @@
+﻿@model GigaJira.Models.Entities.Ticket
+
+
+@section Scripts {
+    <script>
+        const form = document.getElementById("updateTicketForm");
+        if (form) {
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                console.log("Form submission intercepted");
+
+                const formData = new FormData(form);
+                const action = form.getAttribute("data-action");
+
+                fetch(action, {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        const messageBox = document.getElementById("messageBox");
+                        if (data.success) {
+                            messageBox.textContent = data.message;
+                            messageBox.classList.remove("text-red-500");
+                            messageBox.classList.add("text-green-500");
+                        } else {
+                            const errors = data.errors || [{ Error: data.message }];
+                            messageBox.textContent = errors.map(err => `${err.Key}: ${err.Error}`).join(", ");
+                            messageBox.classList.remove("text-green-500");
+                            messageBox.classList.add("text-red-500");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error updating ticket:", error);
+                        const messageBox = document.getElementById("messageBox");
+                        messageBox.textContent = "An unexpected error occurred.";
+                        messageBox.classList.remove("text-green-500");
+                        messageBox.classList.add("text-red-500");
+                    });
+            });
+        } else {
+            console.error("Form with id 'updateTicketForm' not found.");
+        }
+    </script>
+}
+
+<div>
+    <h2 class="h5 fw-bold">@Model.TicketName</h2>
+    <p>@Model.TicketDescription</p>
+
+    <div id="messageBox" class="small mb-3"></div>
+
+    <form id="updateTicketForm" asp-action="UpdateTicket" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+            <label asp-for="TicketName" class="form-label">Name</label>
+            <input asp-for="TicketName" class="form-control" />
+            <span asp-validation-for="TicketName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="TicketDescription" class="form-label">Description</label>
+            <textarea asp-for="TicketDescription" class="form-control"></textarea>
+            <span asp-validation-for="TicketDescription" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Status" class="form-label">Status</label>
+            <select asp-for="Status" asp-items="ViewBag.Statuses" class="form-select"></select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="AssigneId" class="form-label">Assignee</label>
+            <select asp-for="AssigneId" asp-items="ViewBag.Users" class="form-select"></select>
+            <span asp-validation-for="AssigneId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ApproverId" class="form-label">Approver</label>
+            <select asp-for="ApproverId" asp-items="ViewBag.Users" class="form-select"></select>
+            <span asp-validation-for="ApproverId" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Update
+        </button>
+    </form>
+</div>

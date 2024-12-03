@@ -1,0 +1,24 @@
+{
+  "name": "is",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "css:build": "npx tailwindcss -i ./wwwroot/css/site.css -o ./wwwroot/css/styles.css --minify",
+    "watch": "npx tailwindcss -i ./wwwroot/css/site.css -o ./wwwroot/css/styles.css --minify --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ribic2/is.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ribic2/is/issues"
+  },
+  "homepage": "https://github.com/Ribic2/is#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.15"
+  }
+}

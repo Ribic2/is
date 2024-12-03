@@ -1,0 +1,43 @@
+﻿@model IDictionary<string, IEnumerable<GigaJira.Models.Entities.Ticket>>
+@using System.Linq
+
+@{
+    var statuses = (IEnumerable<SelectListItem>)ViewBag.Statuses;
+    var kanbanColumns = statuses.ToDictionary(
+        status => status.Text,
+        status => Model.ContainsKey(status.Text) ? Model[status.Text] : Enumerable.Empty<GigaJira.Models.Entities.Ticket>()
+    );
+}
+
+
+<div class="d-flex overflow-auto">
+    @foreach (var column in kanbanColumns)
+    {
+        <div class="flex-shrink-0 bg-light p-4 rounded shadow-sm me-3" style="width: 18rem;">
+            <h2 class="fw-semibold fs-5 text-dark mb-4">@column.Key</h2>
+            <div class="d-flex flex-column gap-3">
+                @if (column.Value.Any())
+                {
+                    @foreach (var ticket in column.Value)
+                    {
+                        <div 
+                            class="bg-white p-3 rounded shadow-sm hover-shadow transition cursor-pointer" 
+                            data-ticket-id="@ticket.Id" 
+                            onclick="loadTicketDetails('@Url.Action("TicketDetails", "Home", new { ticketId = ticket.Id })')">
+                            <h3 class="fw-medium text-dark">@ticket.TicketName</h3>
+                            <p class="text-muted text-truncate">@ticket.TicketDescription</p>
+                            <div class="text-muted small">
+                                <p>Assignee: @(ticket.Assigne?.UserName ?? "Unassigned")</p>
+                                <p>Approver: @(ticket.Approver?.UserName ?? "None")</p>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted">No tickets in this stage.</p>
+                }
+            </div>
+        </div>
+    }
+</div>

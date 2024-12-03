@@ -75,7 +75,6 @@ namespace GigaJira.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
-                    Discriminator = table.Column<string>(type: "TEXT", maxLength: 21, nullable: false),
                     OrganisationId = table.Column<Guid>(type: "TEXT", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -241,8 +240,8 @@ namespace GigaJira.Migrations
                     ticketName = table.Column<string>(type: "TEXT", nullable: false),
                     ticketDescription = table.Column<string>(type: "TEXT", nullable: false),
                     statusId = table.Column<Guid>(type: "TEXT", nullable: true),
-                    assigneId = table.Column<string>(type: "TEXT", nullable: false),
-                    approverId = table.Column<string>(type: "TEXT", nullable: false)
+                    assigneId = table.Column<string>(type: "TEXT", nullable: true),
+                    approverId = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -251,14 +250,12 @@ namespace GigaJira.Migrations
                         name: "FK_Tickets_AspNetUsers_approverId",
                         column: x => x.approverId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Tickets_AspNetUsers_assigneId",
                         column: x => x.assigneId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Tickets_Projects_ProjectId",
                         column: x => x.ProjectId,

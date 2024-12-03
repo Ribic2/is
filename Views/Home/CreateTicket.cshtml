@@ -1,0 +1,77 @@
+﻿@model GigaJira.Models.Entities.Ticket
+
+@{
+    ViewData["Title"] = "Create Ticket";
+}
+
+<h1>Create Ticket</h1>
+
+<form asp-action="CreateTicket" method="post">
+    <input type="hidden" asp-for="ProjectId" value="@ViewBag.ProjectId" />
+
+    <div>
+        <label asp-for="TicketName">Ticket Name</label>
+        <input asp-for="TicketName" class="form-control" />
+        <span asp-validation-for="TicketName" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="TicketDescription">Description</label>
+        <textarea asp-for="TicketDescription" class="form-control"></textarea>
+        <span asp-validation-for="TicketDescription" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="Status">Status</label>
+        <select asp-for="Status" class="form-select">
+            @foreach (var status in ViewBag.Statuses as List<SelectListItem>)
+            {
+            <option value="@status.Value">@status.Text</option>
+            }
+        </select>
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="SprintId">Sprint</label>
+        <select asp-for="SprintId" class="form-select">
+            <option value="">-- None --</option> <!-- Optional selection -->
+            @foreach (var sprint in ViewBag.Sprints as List<SelectListItem>)
+            {
+            <option value="@sprint.Value">@sprint.Text</option>
+            }
+        </select>
+        <span asp-validation-for="SprintId" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="AssigneId">Assignee</label>
+        <select asp-for="AssigneId" class="form-select">
+            <option value="">-- None --</option> <!-- Optional selection -->
+            @foreach (var user in ViewBag.Users as List<SelectListItem>)
+            {
+            <option value="@user.Value">@user.Text</option>
+            }
+        </select>
+        <span asp-validation-for="AssigneId" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="ApproverId">Approver</label>
+        <select asp-for="ApproverId" class="form-select">
+            <option value="">-- None --</option> <!-- Optional selection -->
+            @foreach (var user in ViewBag.Users as List<SelectListItem>)
+            {
+            <option value="@user.Value">@user.Text</option>
+            }
+        </select>
+        <span asp-validation-for="ApproverId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Create Ticket</button>
+</form>
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

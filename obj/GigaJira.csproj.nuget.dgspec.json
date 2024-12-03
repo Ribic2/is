@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/vidbukovec/Documents/faks/IS/is/GigaJira.csproj": {}
+    "C:\\Users\\vidbu\\Documents\\IS\\is\\GigaJira.csproj": {}
   },
   "projects": {
-    "/Users/vidbukovec/Documents/faks/IS/is/GigaJira.csproj": {
+    "C:\\Users\\vidbu\\Documents\\IS\\is\\GigaJira.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/vidbukovec/Documents/faks/IS/is/GigaJira.csproj",
+        "projectUniqueName": "C:\\Users\\vidbu\\Documents\\IS\\is\\GigaJira.csproj",
         "projectName": "GigaJira",
-        "projectPath": "/Users/vidbukovec/Documents/faks/IS/is/GigaJira.csproj",
-        "packagesPath": "/Users/vidbukovec/.nuget/packages/",
-        "outputPath": "/Users/vidbukovec/Documents/faks/IS/is/obj/",
+        "projectPath": "C:\\Users\\vidbu\\Documents\\IS\\is\\GigaJira.csproj",
+        "packagesPath": "C:\\Users\\vidbu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\vidbu\\Documents\\IS\\is\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/vidbukovec/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\vidbu\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -103,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.404/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

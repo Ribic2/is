@@ -1,0 +1,25 @@
+﻿@model GigaJira.Models.Entities.Project
+
+@{
+    ViewData["Title"] = "Create Project";
+}
+
+<h1>Create a New Project</h1>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label asp-for="ProjectName">Project Name</label>
+        <input asp-for="ProjectName" class="form-control" />
+        <span asp-validation-for="ProjectName" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Description">Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

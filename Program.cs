@@ -59,13 +59,4 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 
-// Run the seeder
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    var context = services.GetRequiredService<ApplicationDbContext>();
-
-    await Seeder.SeedAsync(context);
-}
-
 app.Run();

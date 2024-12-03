@@ -1,0 +1,19 @@
+﻿@model Guid
+
+<h1>Invite User</h1>
+
+<form asp-action="InviteUser" method="post">
+    <input type="hidden" name="projectId" value="@Model" />
+
+    <div>
+        <label for="userId">Select User</label>
+        <select name="userId" class="form-control">
+            @foreach (var user in ViewBag.Users)
+            {
+                <option value="@user.Value">@user.Text</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Invite</button>
+</form>

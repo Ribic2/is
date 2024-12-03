@@ -1,0 +1,23 @@
+﻿@model GigaJira.Models.Entities.Ticket
+
+<h1>Assign Sprint</h1>
+
+<form asp-action="AssignSprint" method="post">
+    <input type="hidden" name="ticketId" value="@Model.Id" />
+
+    <div>
+        <label for="sprintId">Sprint</label>
+        <select name="sprintId" id="sprintId" class="form-control">
+            @foreach (var sprint in ViewBag.Sprints)
+            {
+                <option 
+                    value="@sprint.Value" 
+                    selected="@(Model.SprintId == Guid.Parse(sprint.Value) ? "selected" : null)">
+                    @sprint.Text
+                </option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Assign</button>
+</form>

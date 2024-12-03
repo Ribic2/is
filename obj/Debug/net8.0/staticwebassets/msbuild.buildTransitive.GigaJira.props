@@ -1,3 +1,3 @@
 ﻿<Project>
-  <Import Project="../buildMultiTargeting/GigaJira.props" />
+  <Import Project="..\buildMultiTargeting\GigaJira.props" />
 </Project>

@@ -1,0 +1,30 @@
+﻿@model GigaJira.Models.Entities.Sprint
+
+<h1>Create Sprint</h1>
+
+<form asp-action="CreateSprint" method="post">
+    <!-- Hidden input for ProjectId -->
+    <input type="hidden" asp-for="ProjectId" />
+
+    <div>
+        <label asp-for="Name">Sprint Name</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="StartDate">Start Date</label>
+        <input asp-for="StartDate" type="date" class="form-control" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="EndDate">End Date</label>
+        <input asp-for="EndDate" type="date" class="form-control" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Create Sprint</button>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

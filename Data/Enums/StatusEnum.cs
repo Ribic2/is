@@ -8,7 +8,7 @@ public enum StatusEnum
     IN_PROGRESS,
     [Description("Backlog")]
     BACKLOG,
-    [Description("Dome")]
+    [Description("Done")]
     DONE,
     [Description("QA")]
     QA,

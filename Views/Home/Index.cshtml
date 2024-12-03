@@ -1,8 +1,31 @@
-﻿@{
+﻿@model IEnumerable<GigaJira.Models.Entities.Project>
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="mb-4">Projects</h1>
+
+    <div class="d-flex flex-column align-items-center">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var project in Model)
+            {
+                <div class="card shadow mb-3 text-start w-75" onclick="location.href='@Url.Action("Project", "Home", new { projectId = project.Id })'" style="cursor: pointer;">
+                    <div class="card-body">
+                        <h2 class="h5 card-title">@project.Description</h2>
+                        <p class="card-text">@project.ProjectName</p>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p class="text-muted">No projects found</p>
+        }
+    </div>
+
+    <button class="btn btn-primary mb-4" onclick="location.href='@Url.Action("Create", "Home")'">Create new project</button>
 </div>
