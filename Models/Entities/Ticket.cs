@@ -18,21 +18,21 @@ public class Ticket
     [Required(ErrorMessage = "The Project field is required.")]
     public Guid ProjectId { get; set; }
 
-    [ValidateNever] // Avoid validation for navigation properties
+    [ValidateNever] 
     public Project Project { get; set; }
 
     public Guid? SprintId { get; set; }
 
-    [ValidateNever] // Avoid validation for navigation properties
+    [ValidateNever] 
     public Sprint Sprint { get; set; }
 
     public string AssigneId { get; set; }
 
-    [ValidateNever] // Avoid validation for navigation properties
+    [ValidateNever] 
     public ApplicationUser Assigne { get; set; }
 
     public string ApproverId { get; set; }
 
-    [ValidateNever] // Avoid validation for navigation properties
+    [ValidateNever] 
     public ApplicationUser Approver { get; set; }
 }

@@ -1,5 +1,4 @@
-﻿using GigaJira.Data.Enums;
-using GigaJira.Models.Entities;
+﻿using GigaJira.Models.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,41 +19,35 @@ public class ApplicationDbContext :  IdentityDbContext<ApplicationUser>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
-        // Configure the Project-Owner relationship
+        
         modelBuilder.Entity<Project>()
-            .HasOne(p => p.Owner) // A project has one owner
-            .WithMany() // The owner doesn't need a navigation property to projects
-            .HasForeignKey(p => p.OwnerId) // Use OwnerId as the foreign key
-            .OnDelete(DeleteBehavior.Restrict); // Prevent cascading delete
-
-        // Configure Organisation-Users relationship
+            .HasOne(p => p.Owner) 
+            .WithMany() 
+            .HasForeignKey(p => p.OwnerId) 
+            .OnDelete(DeleteBehavior.Restrict);
+        
         modelBuilder.Entity<Organisation>()
             .HasMany(o => o.Users)
             .WithOne(u => u.Organisation)
             .HasForeignKey(u => u.OrganisationId)
             .OnDelete(DeleteBehavior.Restrict);
-
-        // Configure Organisation-Projects relationship
+        
         modelBuilder.Entity<Organisation>()
             .HasMany(o => o.Projects)
             .WithOne(p => p.Organisation)
             .HasForeignKey(p => p.OrganisationId)
             .OnDelete(DeleteBehavior.Cascade);
-
-        // Configure Project-Users relationship
+        
         modelBuilder.Entity<Project>()
             .HasMany(p => p.Users)
             .WithMany(u => u.Projects);
         
-        // Sprint-Project relationship
         modelBuilder.Entity<Sprint>()
-            .HasOne<Project>() // Reference the Project entity
-            .WithMany(p => p.Sprints) // A project can have many sprints
-            .HasForeignKey(s => s.ProjectId) // Foreign Key
+            .HasOne<Project>() 
+            .WithMany(p => p.Sprints) 
+            .HasForeignKey(s => s.ProjectId) 
             .OnDelete(DeleteBehavior.Cascade);
-
-        // Ticket-Sprint relationship
+        
         modelBuilder.Entity<Ticket>()
             .HasOne(t => t.Sprint)
             .WithMany()

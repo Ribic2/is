@@ -16,8 +16,7 @@
         <a asp-action="InviteUser" asp-route-projectId="@Model.Id" class="btn btn-secondary">
             Invite Users
         </a>
-
-        <!-- Kanban Board -->
+        
         <div class="mt-4">
             <h2 class="h4 fw-semibold mt-4">Kanban Board</h2>
             <div class="d-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
@@ -30,8 +29,7 @@
                     <p>No tickets available for this project.</p>
                 }
             </div>
-
-            <!-- Add buttons for actions -->
+            
             <a asp-action="CreateTicket" asp-route-projectId="@Model.Id"
                class="btn btn-primary d-block text-center mt-4">
                 Create Ticket
@@ -42,8 +40,7 @@
             </a>
         </div>
     </div>
-
-    <!-- Ticket Details Panel on the right -->
+    
     <div id="ticketDetailsPanel" class="w-25 bg-light p-4 rounded shadow-sm ms-4">
         <h2 class="h4 fw-semibold text-dark">Ticket Details</h2>
         <p class="text-muted">Select a ticket to view details.</p>

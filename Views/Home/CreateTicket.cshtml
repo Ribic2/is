@@ -35,7 +35,7 @@
     <div>
         <label asp-for="SprintId">Sprint</label>
         <select asp-for="SprintId" class="form-select">
-            <option value="">-- None --</option> <!-- Optional selection -->
+            <option value="">-- None --</option>
             @foreach (var sprint in ViewBag.Sprints as List<SelectListItem>)
             {
             <option value="@sprint.Value">@sprint.Text</option>
@@ -47,7 +47,7 @@
     <div>
         <label asp-for="AssigneId">Assignee</label>
         <select asp-for="AssigneId" class="form-select">
-            <option value="">-- None --</option> <!-- Optional selection -->
+            <option value="">-- None --</option>
             @foreach (var user in ViewBag.Users as List<SelectListItem>)
             {
             <option value="@user.Value">@user.Text</option>
@@ -59,7 +59,7 @@
     <div>
         <label asp-for="ApproverId">Approver</label>
         <select asp-for="ApproverId" class="form-select">
-            <option value="">-- None --</option> <!-- Optional selection -->
+            <option value="">-- None --</option>
             @foreach (var user in ViewBag.Users as List<SelectListItem>)
             {
             <option value="@user.Value">@user.Text</option>

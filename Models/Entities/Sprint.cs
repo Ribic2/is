@@ -5,20 +5,20 @@ namespace GigaJira.Models.Entities;
 
 public class Sprint
 {
-    public Guid Id { get; set; } // Primary Key
+    public Guid Id { get; set; } 
 
     [Required(ErrorMessage = "Sprint name is required.")]
-    public string Name { get; set; } // Sprint name
+    public string Name { get; set; } 
 
     [Required(ErrorMessage = "Start date is required.")]
-    public DateTime StartDate { get; set; } // Sprint start date
+    public DateTime StartDate { get; set; } 
 
     [Required(ErrorMessage = "End date is required.")]
-    public DateTime EndDate { get; set; } // Sprint end date
+    public DateTime EndDate { get; set; } 
     
     [Required(ErrorMessage = "The ProjectId is required.")]
-    public Guid ProjectId { get; set; } // Foreign Key for Project
+    public Guid ProjectId { get; set; } 
 
     [NotMapped]
-    public Project Project { get; set; } // Navigation property (optional)
+    public Project Project { get; set; } 
 }
