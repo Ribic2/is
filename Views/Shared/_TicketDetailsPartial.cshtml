@@ -83,6 +83,14 @@
             <span asp-validation-for="ApproverId" class="text-danger"></span>
         </div>
 
+        <div class="mb-3">
+            <label asp-for="SprintId" class="form-label">Sprint</label>
+            <select asp-for="SprintId" asp-items="ViewBag.Sprints" class="form-select">
+                <option value="">Select a Sprint</option>
+            </select>
+            <span asp-validation-for="SprintId" class="text-danger"></span>
+        </div>
+
         <button type="submit" class="btn btn-primary">
             Update
         </button>

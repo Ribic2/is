@@ -304,28 +304,30 @@ public class HomeController : Controller
             })
             .ToList();
 
+        // Populate sprints for the dropdown
+        ViewBag.Sprints = await _context.Sprints
+            .Select(s => new SelectListItem
+            {
+                Value = s.Id.ToString(),
+                Text = s.Name // Replace 'Name' with the sprint's display name property
+            })
+            .ToListAsync();
+
         return PartialView("_TicketDetailsPartial", ticket);
     }
 
     [HttpPost]
     public async Task<IActionResult> UpdateTicket(Ticket ticket)
     {
-        // Log incoming data
         _logger.LogInformation("Incoming ticket data: {@Ticket}", ticket);
 
         if (!ModelState.IsValid)
         {
-            // Collect validation errors
             var errors = ModelState.Keys
                 .SelectMany(key => ModelState[key].Errors.Select(x => new { Key = key, Error = x.ErrorMessage }))
                 .ToList();
 
-            // Log validation errors
-            foreach (var error in errors)
-            {
-                _logger.LogError($"Key: {error.Key}, Error: {error.Error}");
-            }
-
+            _logger.LogError("Validation Errors: {@Errors}", errors);
             return Json(new { success = false, errors });
         }
 
@@ -335,16 +337,16 @@ public class HomeController : Controller
             return Json(new { success = false, message = "Ticket not found." });
         }
 
-        // Update the ticket
+        // Update the ticket properties
         existingTicket.TicketName = ticket.TicketName;
         existingTicket.TicketDescription = ticket.TicketDescription;
         existingTicket.Status = ticket.Status;
         existingTicket.AssigneId = ticket.AssigneId;
         existingTicket.ApproverId = ticket.ApproverId;
+        existingTicket.SprintId = ticket.SprintId; // Assign to sprint
 
         await _context.SaveChangesAsync();
 
-        // Log successful update
         _logger.LogInformation("Ticket updated successfully: {@Ticket}", existingTicket);
 
         return Json(new { success = true, message = "Ticket updated successfully." });
