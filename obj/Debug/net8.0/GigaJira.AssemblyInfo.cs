@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GigaJira")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aa4ac10ca79aa88866d36cc4c86739545dc576c5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0efe85c288e438df3a74cea3bc66ed17dc79bf8b")]
 [assembly: System.Reflection.AssemblyProductAttribute("GigaJira")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GigaJira")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

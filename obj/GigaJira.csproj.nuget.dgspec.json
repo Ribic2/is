@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vidbu\\Documents\\IS\\is\\GigaJira.csproj": {}
+    "C:\\Users\\Luka\\is\\GigaJira.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vidbu\\Documents\\IS\\is\\GigaJira.csproj": {
+    "C:\\Users\\Luka\\is\\GigaJira.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vidbu\\Documents\\IS\\is\\GigaJira.csproj",
+        "projectUniqueName": "C:\\Users\\Luka\\is\\GigaJira.csproj",
         "projectName": "GigaJira",
-        "projectPath": "C:\\Users\\vidbu\\Documents\\IS\\is\\GigaJira.csproj",
-        "packagesPath": "C:\\Users\\vidbu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vidbu\\Documents\\IS\\is\\obj\\",
+        "projectPath": "C:\\Users\\Luka\\is\\GigaJira.csproj",
+        "packagesPath": "C:\\Users\\Luka\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Luka\\is\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\vidbu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Luka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
