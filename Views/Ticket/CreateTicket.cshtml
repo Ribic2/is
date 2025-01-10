@@ -1,0 +1,28 @@
+@model Jira.Models.ViewModel.CreateTicketViewModel
+
+<div>
+    <h3>Create new ticket </h3>
+    <hr/>
+    <p>Add a new ticket to your project. You will be automatically assigned as reviewer on ticket creation. 
+        <br/>You can change it later.
+        </p>
+    <form method="post">
+        <input asp-for="ProjectId" hidden="hidden"/>
+        <div class="mt-3">
+            <label asp-for="TicketName">Ticket name</label>
+            <input type="text" asp-for="TicketName" 
+                   class="form-control"
+                   placeholder="Ticket name..."
+                   />
+        </div>
+        <div class="mt-3">
+            <label asp-for="TicketDescription">Ticket description</label>
+            <input type="text" asp-for="TicketDescription" 
+                   placeholder="Ticket description..." 
+                   class="form-control"
+                   />
+        </div>
+
+        <button class="btn btn-primary mt-3">Create new ticket</button>
+    </form>
+</div>

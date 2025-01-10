@@ -1,0 +1,56 @@
+﻿@model Jira.Models.Entities.Ticket
+
+<div class="d-flex overflow-auto">
+    
+    <form class="flex flex-row gap-3 w-100" asp-action="UpdateTicket" method="post" asp-controller="Ticket">
+        <h4>Ticket: @Model.TicketName</h4>   
+        <hr/>
+        <input asp-for="TicketID" value="@Model.TicketID" hidden="hidden"/>
+        <div>
+            <label asp-for="TicketName"></label>
+            <input asp-for="TicketName" placeholder="Ticket name" value="@Model.TicketName" class="form-control"/>
+        </div>
+
+        <div>
+            <label asp-for="TicketDescription"></label>
+            <input placeholder="Ticket description" asp-for="@Model.TicketDescription" value="@Model.TicketDescription" class="form-control"/>
+        </div>
+
+        <div>
+            <label asp-for="Sprint"></label>
+            <select asp-items="ViewBag.Statuses" asp-for="Status" class="form-select"></select>
+        </div>
+
+        <div>
+            <label asp-for="Assigner"></label>
+            <select asp-items="ViewBag.ActiveUsers" asp-for="Assigner" class="form-select"></select>
+        </div>
+
+        <div>
+            <label asp-for="Reviewer"></label>
+            <select asp-items="ViewBag.ActiveUsers" asp-for="Reviewer" class="form-select"></select>
+        </div>
+
+        <div>
+            <label asp-for="Sprint"></label>
+            <select asp-items="ViewBag.Sprints" asp-for="Sprint" class="form-select"></select>
+        </div>
+
+        <button class="btn btn-primary mt-3"
+                id="updateButton"
+                type="submit"
+        >Update</button>
+    </form>
+</div>
+
+@section Scripts
+{
+    <script>
+        window.onload = function (){
+            document.querySelector("#updateButton").addEventListener('click', function (){
+               console.log("test")
+            })   
+        }
+    
+    </script>
+}

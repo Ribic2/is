@@ -1,0 +1,17 @@
+﻿@model Jira.Models.ViewModel.CreateProjectViewModel
+
+<div>
+    <h1>Create project</h1>
+    <form method="post">
+        <div class="mt-3">
+            <label asp-for="ProjectName"></label>
+            <input type="text" asp-for="ProjectName" class="form-control"/>
+        </div>
+        <div class="mt-3">
+            <label asp-for="ProjectDescription"></label>
+            <input type="text" asp-for="ProjectDescription" class="form-control"/>
+        </div>
+        
+        <button class="btn btn-primary mt-3">Create new project</button>
+    </form>
+</div>

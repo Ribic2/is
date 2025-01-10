@@ -1,0 +1,98 @@
+﻿@model Jira.Models.ViewModel.HomeViewModel
+
+<div class="text-center">
+    <h1 class="display-4 text-start fw-bold">Welcome @User.Identity.Name</h1>
+    
+    <a class="text-start" asp-controller="Project" asp-action="CreateProject">
+        <button class="btn btn-primary">
+            Create new project
+        </button>
+    </a>
+    <hr/>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-start col-md-6">
+                <h2>Active projects</h2>
+                @if (Model.Projects.Count == 0)
+                {
+                    <p>Currently, you are not part of no project! Create one now.</p>
+                }
+                else
+                {
+                    @foreach (var project in Model.Projects)
+                    {
+                        <a asp-controller="Project" asp-action="Project" asp-route-id="@project.ProjectId">
+                            <div class="card mb-2 p-2 text-start ">
+                                <h2>@project.Name</h2>
+                                <p>@project.Description</p>
+                            </div>
+                        </a>
+                    }
+                }
+            </div>
+            <div class="col-12 text-start col-md-6">
+
+                <h2>Invitation inbox</h2>
+
+                @if (Model.Invites.Count == 0)
+                {
+                    <p>Your invitation inbox is empty!</p>
+                }
+                else
+                {
+                    @foreach (var invite in Model.Invites)
+                    {
+                        <div class="card">
+                            <p>You've been invited to @invite.Project.Name</p>
+
+                            <div class="flex-row">
+                                <Button
+                                    class="btn btn-primary accept-button"
+                                    data-type="accept"
+                                    data-projectId="@invite.Project.ProjectId"
+                                >
+                                    Accept
+                                </Button>
+
+                                <button class="btn btn-danger decline-button"
+                                        data-type="decline"
+                                        data-projectId="@invite.Project.ProjectId"
+                                >
+                                    Decline
+                                </button>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+@section Scripts
+{
+    <script>
+        window.onload = function (){
+            document.querySelector(".accept-button").addEventListener('click', function (evt){
+                let projectId = evt.srcElement.attributes.getNamedItem("data-projectid").value
+                let type = evt.srcElement.attributes.getNamedItem("data-type").value
+
+                fetch(`/Projects/${projectId}/accept`)
+                    .then(()=>{
+                        window.location.reload()
+                    })
+            });
+
+            document.querySelector(".decline-button").addEventListener('click', async function (evt){
+                let projectId = evt.srcElement.attributes.getNamedItem("data-projectid").value
+                let type = evt.srcElement.attributes.getNamedItem("data-type").value
+                
+                await fetch("/")
+                    .then(()=>{
+                        window.location.reload()
+                })
+            });
+        }
+    </script>
+}

@@ -1,0 +1,90 @@
+@model Jira.Models.ViewModel.ProjectViewModel
+
+<div>
+    <h1>Project page</h1>
+    <h3>Project name @Model.ProjectName</h3>
+
+    <hr/>
+    <h4>Actions</h4>
+    <div class="mb-2 mt-2">
+        <a asp-controller="Ticket" asp-action="CreateTicket" asp-route-projectId="@Model.ProjectId">
+            <button class="btn btn-primary">
+                Create ticket
+            </button>
+        </a>
+
+        <a asp-controller="Project" asp-action="InvitePeopleToProject" asp-route-id="@Model.ProjectId">
+            <button class="btn btn-primary">
+                Invite people to project
+            </button>
+        </a>
+
+        <a asp-controller="Sprint" asp-action="CreateSprint" asp-route-id="@Model.ProjectId">
+            <button class="btn btn-primary">
+                Create new sprint
+            </button>
+        </a>
+    </div>
+    <hr/>
+    
+    <h4>Kanban table</h4>
+
+    <div class="row">
+        <div class="col-12 col-lg-8">
+            <div class="d-flex flex-row">
+                @foreach (var ticketSet in Model.TicketList)
+                {
+                    <div class="border flex-fill text-start p-2">
+                        <h2>@ticketSet.Status</h2>
+                
+                        <div>
+                            @if (!ticketSet.Tickets.Any())
+                            {
+                                <p>No tickets in this stage!</p>
+                            }
+                            else
+                            {
+                                @foreach (var ticket in ticketSet.Tickets)
+                                {
+                                    <div
+                                        class="card m-2 text-start p-2"
+                                        onclick="loadTicketDetails('@Url.Action("GetTicket", "Ticket", new {id = ticket.TicketID})')"
+                                    >
+                                        <h3>@ticket.TicketName</h3>
+                                        <p>@ticket.TicketDescription</p>
+                                    </div>
+                                }   
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+                    
+        </div>
+
+        <div class="col-12 col-lg-4">
+            <div class="card p-2" id="ticketDetail">
+                <p>No ticket was selected!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+       function loadTicketDetails(ticketUrl){
+           let ticketDetailSection = document.querySelector("#ticketDetail");
+           fetch(ticketUrl).then((response)=>{
+               if (!response.ok){
+                   throw new Error('Failed to load ticket details.');
+               }
+               return response.text();
+           }).then((html)=>{
+               ticketDetailSection.innerHTML = html;
+           }).catch((err)=>{
+               ticketDetailSection.textContent = "Error loading a ticket :("
+           })
+       }
+    </script>
+}
