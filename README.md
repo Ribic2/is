@@ -9,5 +9,5 @@ Na vsakem projektu se lahko ustvari *Tickets* in *Sprints*. *Tickets* se lahko t
 
 ## Razdelitev dela
 
-Vid Bukovec: Backend, specifične tehnološke izvedbe, devops
+Vid Bukovec: Backend, specifične tehnološke izvedbe, devops;
 Luka Vrtačnik: Celotna ideja projekta in generalna tehnična smer projekta, frontend, shema podatkovne baze
