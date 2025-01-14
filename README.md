@@ -11,3 +11,7 @@ Na vsakem projektu se lahko ustvari *Tickets* in *Sprints*. *Tickets* se lahko t
 
 Vid Bukovec: Backend, specifične tehnološke izvedbe, devops;
 Luka Vrtačnik: Celotna ideja projekta in generalna tehnična smer projekta, frontend, shema podatkovne baze
+
+![image](https://github.com/user-attachments/assets/7b8cdc7e-d5da-4ad9-898a-4f0171f513bc)
+
+
