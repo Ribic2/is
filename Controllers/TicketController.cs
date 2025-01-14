@@ -110,4 +110,19 @@ public class TicketController:  Controller
         
         return PartialView("_TicketDetailPartial" , ticket);
     }
+    
+    [HttpPost("tickets/{id}")]
+    public async Task<IActionResult> DeleteTicket(int id)
+    {
+        var ticket = await _context.Tickets
+            .Include(p=>p.Project)
+            .Where(t => t.TicketID == id).FirstAsync();
+        
+        _context.Tickets.Remove(ticket);
+        _context.SaveChangesAsync();
+
+        return RedirectToAction("Project", "Project",
+            new { id = ticket.Project.ProjectId }
+        );
+    }
 }

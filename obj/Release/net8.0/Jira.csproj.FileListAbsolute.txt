@@ -292,3 +292,8 @@ C:\Users\vidbu\RiderProjects\Jira\Jira\obj\Release\net8.0\refint\Jira.dll
 C:\Users\vidbu\RiderProjects\Jira\Jira\obj\Release\net8.0\Jira.pdb
 C:\Users\vidbu\RiderProjects\Jira\Jira\obj\Release\net8.0\Jira.genruntimeconfig.cache
 C:\Users\vidbu\RiderProjects\Jira\Jira\obj\Release\net8.0\ref\Jira.dll
+C:\Users\vidbu\RiderProjects\Jira\Jira\bin\Release\net8.0\Microsoft.OpenApi.dll
+C:\Users\vidbu\RiderProjects\Jira\Jira\bin\Release\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\vidbu\RiderProjects\Jira\Jira\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\vidbu\RiderProjects\Jira\Jira\bin\Release\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\vidbu\RiderProjects\Jira\Jira\obj\Release\net8.0\Jira.sourcelink.json

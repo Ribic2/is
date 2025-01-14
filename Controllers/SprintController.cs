@@ -31,6 +31,11 @@ public class SprintController:  Controller
     [HttpPost("/Projects/{id}/Sprint")]
     public async Task<IActionResult> CreateSprint(CreateSprintViewModel createSprintViewModel)
     {
+        if (!ModelState.IsValid)
+        {
+            return View("CreateSprint", createSprintViewModel);
+        }
+        
         Sprint sprint = new Sprint();
         sprint.Name = createSprintViewModel.Name;
         sprint.Description = createSprintViewModel.Description;

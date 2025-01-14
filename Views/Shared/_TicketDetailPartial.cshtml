@@ -1,8 +1,7 @@
 ﻿@model Jira.Models.Entities.Ticket
 
-<div class="d-flex overflow-auto">
-    
-    <form class="flex flex-row gap-3 w-100" asp-action="UpdateTicket" method="post" asp-controller="Ticket">
+<div class="flex flex-col">
+    <form asp-controller="Ticket" asp-action="UpdateTicket" method="post" class="flex flex-col gap-3 w-100">
         <h4>Ticket: @Model.TicketName</h4>   
         <hr/>
         <input asp-for="TicketID" value="@Model.TicketID" hidden="hidden"/>
@@ -36,21 +35,10 @@
             <select asp-items="ViewBag.Sprints" asp-for="Sprint" class="form-select"></select>
         </div>
 
-        <button class="btn btn-primary mt-3"
-                id="updateButton"
-                type="submit"
-        >Update</button>
+        <button class="btn btn-primary mt-3 w-100" type="submit">Update</button>
     </form>
-</div>
-
-@section Scripts
-{
-    <script>
-        window.onload = function (){
-            document.querySelector("#updateButton").addEventListener('click', function (){
-               console.log("test")
-            })   
-        }
     
-    </script>
-}
+    <form asp-controller="Ticket" asp-action="DeleteTicket" asp-route-ticket="@Model.TicketID" method="post">
+        <button class="btn btn-danger w-100 mt-3" type="submit">Delete</button>
+        </form>
+</div>

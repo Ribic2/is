@@ -13,14 +13,17 @@
             <input type="text" asp-for="TicketName" 
                    class="form-control"
                    placeholder="Ticket name..."
-                   />
+            />
+            <span asp-validation-for="TicketName" class="text-danger"></span>
+
         </div>
         <div class="mt-3">
             <label asp-for="TicketDescription">Ticket description</label>
             <input type="text" asp-for="TicketDescription" 
                    placeholder="Ticket description..." 
                    class="form-control"
-                   />
+            />
+            <span asp-validation-for="TicketDescription" class="text-danger"></span>
         </div>
 
         <button class="btn btn-primary mt-3">Create new ticket</button>
